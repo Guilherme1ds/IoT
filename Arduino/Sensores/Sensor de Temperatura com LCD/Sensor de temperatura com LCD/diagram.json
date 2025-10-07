@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "author": "GUILHERME HENRIQUE BERNARDI",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-mini", "id": "bb1", "top": -11, "left": 266.4, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 19.8, "left": -29.4, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -114.9, "left": 282.6, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 275.2,
+      "left": 236,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "dht1:VCC", "bb1:3t.a", "", [ "$bb" ] ],
+    [ "dht1:SDA", "bb1:4t.a", "", [ "$bb" ] ],
+    [ "dht1:NC", "bb1:5t.a", "", [ "$bb" ] ],
+    [ "dht1:GND", "bb1:6t.a", "", [ "$bb" ] ],
+    [ "bb1:3t.b", "uno:5V", "red", [ "v220.8", "h-163.2" ] ],
+    [ "bb1:4t.b", "uno:3", "green", [ "v0", "h-105.6" ] ],
+    [ "bb1:5t.b", "uno:10", "green", [ "v-9.6", "h-192" ] ],
+    [ "bb1:6t.b", "uno:GND.2", "black", [ "v230.4", "h-192" ] ],
+    [ "lcd1:GND", "uno:GND.2", "black", [ "h0" ] ],
+    [ "lcd1:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "lcd1:SDA", "uno:A4", "green", [ "h0" ] ],
+    [ "lcd1:SCL", "uno:A5", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
