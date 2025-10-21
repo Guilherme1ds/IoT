@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle LED</title>
+<style>
+body { font-family: Arial; text-align: center; background: #f2f2f2; padding: 30px; }
+h1 { color: #333; }
+div { border: 2px solid #ccc; border-radius: 10px; width: 300px; margin: 20px auto; padding: 20px; background: #fff; }
+button { border: none; color: white; padding: 10px 20px; margin: 5px; font-size: 16px; border-radius: 6px; cursor: pointer; }
+button.on { background-color: #28a745; }
+button.off { background-color: #dc3545; }
+button.on:hover { background-color: #218838; }
+button.off:hover { background-color: #c82333; }
+</style>
+</head>
+<body>
+<h1>Controle LED</h1>
+<div>
+  <h2>Porta</h2>
+  <button class="on" onclick="controlLed('on')">Abrir</button>
+  <button class="off" onclick="controlLed('off')">Fechar</button>
+</div>
+
+<script>
+function controlLed(action) {
+  fetch(`/control/${action}`)
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Erro:', error));
+}
+</script>
+</body>
+</html>

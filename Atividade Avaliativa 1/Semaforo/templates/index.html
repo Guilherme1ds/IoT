@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de LEDs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        div {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        button {
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:first-of-type {
+            background-color: #28a745;
+        }
+
+        button:first-of-type:hover {
+            background-color: #218838;
+        }
+
+        button:first-of-type:active {
+            transform: scale(0.95);
+            background-color: #1e7e34;
+        }
+
+        button:last-of-type {
+            background-color: #dc3545;
+        }
+
+        button:last-of-type:hover {
+            background-color: #c82333;
+        }
+
+        button:last-of-type:active {
+            transform: scale(0.95);
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Semaforo Simples</h1>
+
+    <div>
+        <h2>LED 1 (Verde)</h2>
+        <button class="on" onclick="controlLed('1', 'on')">Ligar</button>
+        <button class="off" onclick="controlLed('1', 'off')">Desligar</button>
+    </div>
+
+    <div>
+        <h2>LED 2 (Amarelo)</h2>
+        <button class="on" onclick="controlLed('2', 'on')">Ligar</button>
+        <button class="off" onclick="controlLed('2', 'off')">Desligar</button>
+    </div>
+
+    <div>
+        <h2>LED 3 (Vermelho)</h2>
+        <button class="on" onclick="controlLed('3', 'on')">Ligar</button>
+        <button class="off" onclick="controlLed('3', 'off')">Desligar</button>
+    </div>
+
+    <script>
+    function controlLed(ledNum, action) {
+      fetch(`/control/${ledNum}/${action}`) // Corrigido: era "fecht"
+        .then(response => response.text())
+        .then(data => {
+          console.log(data);
+          alert(data); // Mostra no navegador o que o servidor respondeu
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
+    }
+  </script>
+</body>
+</html>
